@@ -1,7 +1,7 @@
 {
     "name": "cellv/laravel-posts",
     "type": "library",
-    "description": ":package_description",
+    "description": ":simple blog post Laravel package",
     "keywords": [
         "cellv",
         "laravel-posts"
@@ -10,12 +10,13 @@
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": ":Massimo Selvi",
+            "email": ":maxweb@mac.com",
             "homepage": ":author_website",
             "role": "Developer"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
         "illuminate/support": "~5.1",
         "php" : "~5.6|~7.0",
