@@ -7,7 +7,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```Massimo Selvi``` ```massimoselvi``` ```www.massimoselvi.com``` ```maxweb@mac.com``` ```cellv``` ```laravel-post``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
+**Note:** Replace ```Massimo Selvi``` ```massimoselvi``` ```www.massimoselvi.com``` ```maxweb@mac.com``` ```cellv``` ```laravel-post``` ```simple blog post Laravel package``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
 PSRs you support to avoid any confusion with users and contributors.
@@ -36,7 +36,7 @@ $ composer require cellv/laravel-post
 ## Usage
 
 ``` php
-$skeleton = new League\Skeleton();
+$skeleton = new cellv\laravel-post();
 echo $skeleton->echoPhrase('Hello, League!');
 ```
 
