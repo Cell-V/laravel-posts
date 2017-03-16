@@ -1,7 +1,3 @@
-@php
-setlocale(LC_TIME, 'it_IT');
-@endphp
-
 @extends('layouts.app')
 
 @section('styles')
@@ -15,12 +11,13 @@ setlocale(LC_TIME, 'it_IT');
       <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-info">
             <div class="panel-heading">
-              <a class="btn btn-primary btn-block" role="button" data-toggle="collapse" data-parent="#accordion" href="#newPost" aria-expanded="true" aria-controls="newPost">
+              <h4>New Post</h4>
+              {{-- <a class="btn btn-primary btn-block" role="button" data-toggle="collapse" data-parent="#accordion" href="#newPost" aria-expanded="true" aria-controls="newPost">
                 New Post
-              </a>
+              </a> --}}
             </div>
 
-            <div id="newPost" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div id="newPost" class="{{-- panel-collapse collapse --}}" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
                 @include('LaravelPosts::forms.create')
@@ -31,19 +28,6 @@ setlocale(LC_TIME, 'it_IT');
       </div>
     </div>
   @endif
-
-  <div class="row">
-
-    @if (count($posts))
-      @foreach ($posts->sortByDesc('updated_at') as $post)
-        <div class="col-md-8 col-md-offset-2">
-            {{-- {{ dump($post->user) }} --}}
-            @include('LaravelPosts::partials.card', ['post'=>$post])
-
-        </div>
-      @endforeach
-    @endif
-  </div>
 </div>
 @endsection
 

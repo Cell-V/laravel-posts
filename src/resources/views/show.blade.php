@@ -2,16 +2,115 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h3>{{$post->title}}</h3></div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <nav class="navbar navbar-info" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Show Posts</a>
+          </div>
 
-                <div class="panel-body">
-                  {{ucfirst($post->body)}}
-                </div>
-            </div>
-        </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar">
+            {{-- <ul class="nav navbar-nav">
+              <li class="active"><a href="{{route('post.index')}}" class="btn-primary">All Posts list</a></li>
+              <li><a href="#"></a></li>
+            </ul> --}}
+
+            {{-- <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-default">Submit</button>
+            </form> --}}
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{{route('post.index')}}">Back to list</a></li>
+              @include('LaravelPosts::menu.activity', ['activities'=>$post->activity])
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
     </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-info">
+              <div class="panel-heading clearfix">
+                <div class="" style="display:inline-block;">
+                  <h4>{{$post->title}}</h4>
+                </div>
+
+                <div class="btn-group">
+                  <button class="btn btn-default btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    @foreach ($post->activity->sortByDesc('updated_at') as $activity)
+                      <li><a href="#"><strong>{{array_get($activity->getChangesAttribute()->get('attributes'), 'title')}}</strong> <small>on {{$activity->updated_at}}</small></a></li>
+                    @endforeach
+                  </ul>
+                </div>
+
+                {{-- <div class="btn-group">
+                  <button type="button" class="btn btn-default">{{$post->title}}</button>
+                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    @foreach ($post->activity->sortByDesc('updated_at') as $activity)
+                      <li><a href="#"><strong>{{array_get($activity->getChangesAttribute()->get('attributes'), 'title')}}</strong> <small>on {{$activity->updated_at}}</small></a></li>
+                    @endforeach
+                  </ul>
+                </div> --}}
+
+                @can('update-post', $post)
+                <div class="pull-right"style="line-height: 41px;">
+                  <a href="{{route('post.edit', $post->id)}}" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                </div>
+                @endcan
+              </div>
+
+              <div class="panel-body">
+                <ul class="list-unstyled">
+                  @foreach ($post->activity->sortByDesc('updated_at') as $activity)
+                    {{-- <li>{{dump($activity->properties)}}</li> --}}
+                    {{-- <li>{{dump($activity->properties->pluck('title'))}}</li> --}}
+                    {{-- <li>{{array_pluck($activity->properties, 'title')}}</li> --}}
+                    {{-- <li>{{dump($activity->getChangesAttribute())}}</li> --}}
+                    {{-- <li>{{array_dot($activity->getChangesAttribute(), 'old.title')}}</li> --}}
+                    {{-- <li>{{array_get($activity->getChangesAttribute()->get('attributes'), 'title')}}</li> --}}
+                    {{-- <li>{{dump($activity->getChangesAttribute()->get('old'))}}</li> --}}
+                    {{-- <li>{{dump($activity->getChangesAttribute()->pluck('title'))}}</li> --}}
+                    {{-- <li>{{dump($activity->getExtraProperty('title'))}}</li> --}}
+                  @endforeach
+                </ul>
+
+                {{ucfirst($post->body)}}
+                <div class="btn-group">
+                  <button class="btn btn-default btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    @foreach ($post->activity->sortByDesc('updated_at') as $activity)
+                      <li><a href="#"><strong>{{array_get($activity->getChangesAttribute()->get('attributes'), 'body')}}</strong> <small>on {{$activity->updated_at}}</small></a></li>
+                    @endforeach
+                  </ul>
+                </div>
+                <br>
+                {{ucfirst($post->tags)}}
+              </div>
+          </div>
+      </div>
+  </div>
+
 </div>
 @endsection
