@@ -59,7 +59,7 @@
         </div>
 
         <div class="panel-body">
-            @include('LaravelPosts::forms.edit', $post)
+            @include('LaravelPosts::_edit', $post)
         </div>
       </div>
     </div>

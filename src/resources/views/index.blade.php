@@ -23,7 +23,7 @@ setlocale(LC_TIME, 'it_IT');
             <div id="newPost" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                @include('LaravelPosts::forms.create')
+                @include('LaravelPosts::_create')
 
               </div>
             </div>
@@ -38,7 +38,7 @@ setlocale(LC_TIME, 'it_IT');
       @foreach ($posts->sortByDesc('updated_at') as $post)
         <div class="col-md-8 col-md-offset-2">
             {{-- {{ dump($post->user) }} --}}
-            @include('LaravelPosts::partials.card', ['post'=>$post])
+            @include('LaravelPosts::_card', ['post'=>$post])
 
         </div>
       @endforeach

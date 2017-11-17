@@ -20,7 +20,7 @@
             <div id="newPost" class="{{-- panel-collapse collapse --}}" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
 
-                @include('LaravelPosts::forms.create')
+                @include('LaravelPosts::_create')
 
               </div>
             </div>

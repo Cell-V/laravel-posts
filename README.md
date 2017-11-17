@@ -38,6 +38,15 @@ $skeleton = new cellv\laravel-post();
 echo $skeleton->echoPhrase('Hello, League!');
 ```
 
+
+``` blade
+@can('view', $post->comments->first())
+    @includeIf('post.partials._comments')
+@else
+    <em><a href="{{ route('login-ajax') }}" class="btn ajax" data-method="post" data-append=".auth-modal">Sign In</a> to read comments</em>
+@endcan
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

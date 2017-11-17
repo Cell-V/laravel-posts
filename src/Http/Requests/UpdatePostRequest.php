@@ -3,16 +3,19 @@
 namespace CellV\LaravelPosts\Http\Requests;
 
 use Auth;
+use CellV\LaravelPosts\Models\Post;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePostRequest extends FormRequest {
+class UpdatePostRequest extends FormRequest {
 	/**
 	 * Determine if the user is authorized to make this request.
 	 *
 	 * @return bool
 	 */
 	public function authorize() {
-		return Auth::check();
+		$post = $this->post;
+
+		return Auth::check() && $post && $post->user_id==$this->user()->getKey();//$this->user()->can('update', $post);
 	}
 
 	/**
@@ -21,12 +24,6 @@ class StorePostRequest extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
-
-		// $input = $this->input();
-		// $input['tags'] = explode(',', $this->input('tags'));
-		// dump('$this->input()', $this->input());
-		// $this->replace($input);
-		// dump('$this->input()', $this->input());
 		return [
 			'title' => 'required',
 			'body' => 'required',

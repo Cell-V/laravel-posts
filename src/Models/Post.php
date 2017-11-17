@@ -2,27 +2,29 @@
 
 namespace CellV\LaravelPosts\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Dimsav\Translatable\Translatable;
 
 // use Cviebrock\EloquentTaggable\Taggable;
 // use Cviebrock\EloquentSluggable\Sluggable;
-// use Dimsav\Translatable\Translatable;
-
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Tags\HasTags;
+use ThyagoBrejao\Commentable\Traits\Commentable;
 
 class Post extends Model {
 	use HasTags;
 	use LogsActivity;
+	use Commentable;
 
 	// use Taggable;
-	// use Translatable;
+	use Translatable;
 
-	// public $translatedAttributes = ['title', 'body'];
-	//
+	public $translatedAttributes = ['title', 'body'];
+	
 	protected $fillable = [
-		'title',
-		'body',
+		// 'title',
+		// 'body',
+		'tags',
 		// 'online',
 	];
 
@@ -30,8 +32,8 @@ class Post extends Model {
 	protected static $logAttributes = ['title', 'body'];
 
 	/*
-	 * Relationships
-	 */
+		 * Relationships
+	*/
 
 	public function user() {
 		return $this->belongsTo('App\User');

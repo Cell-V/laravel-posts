@@ -1,24 +1,26 @@
-<form class="form-horizontal" action="{{route('post.store')}}" method="post">
+<form class="form-horizontal" action="{{route('post.update', $post->id)}}" method="post">
   {{ csrf_field() }}
+  {{ method_field('PUT') }}
 
   <div class="form-group">
     <label for="title" class="control-label sr-only">Title</label>
     <div class="col-md-offset-1 col-sm-10">
-      <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+      <input type="text" class="form-control" id="title" name="title" value="{{ $post->title }}" placeholder="Title">
     </div>
   </div>
 
   <div class="form-group">
     <label for="body" class="control-label sr-only">Body</label>
     <div class="col-md-offset-1 col-sm-10">
-      <textarea class="form-control" id="body" name="body" placeholder="Text body ..." rows="3"></textarea>
+      <textarea class="form-control" id="body" name="body" placeholder="Text body ..." rows="3">{{ $post->body }}</textarea>
     </div>
   </div>
 
   <div class="form-group">
     <label for="tags" class="control-label sr-only">Tags</label>
     <div class="col-md-offset-1 col-sm-10">
-      <input type="text" class="form-control" id="tags" data-role="tagsinput" data-live-search="true" name="tags[]" placeholder="Tags">
+      <input type="text" class="form-control" id="tags" data-role="tagsinput" data-live-search="true" name="tags" value="{{ $post->tags->pluck('name')->implode(',') }}" placeholder="Tags">
+      {{-- <input type="text" class="form-control" id="tags" data-role="tagsinput" data-live-search="true" name="tags" value="{{ $post->tags->pluck('name')->implode(',') }}" placeholder="Tags"> --}}
     </div>
   </div>
 
