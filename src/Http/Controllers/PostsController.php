@@ -16,7 +16,7 @@ class PostsController extends Controller {
 	use SEOToolsTrait;
 
 	public function __construct() {
-		$this->middleware('web');
+		$this->middleware(['web', 'auth']);
 
 		Gate::define('update-post', function ($user, $post) {
 			debug($user, $post);

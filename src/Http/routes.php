@@ -3,7 +3,6 @@
 /*
  * Posts Routes
  */
-
 Route::get('user/posts', function () {
 	dd('user.post');
 })->name('user.post');
